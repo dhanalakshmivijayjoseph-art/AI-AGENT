@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HETA AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar: chat history -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="logo">H</span> HETA AI</div>
+      <button class="new-chat" id="newChatBtn">+ New Chat</button>
+      <div class="chat-list" id="chatList"></div>
+      <div class="sidebar-foot">Your Intelligence. Your Assistant. Your HETA AI.</div>
+    </aside>
+    <div class="backdrop" id="backdrop"></div>
+
+    <!-- Main chat area -->
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">&#9776;</button>
+        <div class="chat-title" id="chatTitle">HETA AI</div>
+        <button class="icon-btn" id="clearBtn" title="Clear conversation">Clear</button>
+        <button class="icon-btn" id="themeBtn" title="Switch theme" aria-label="Switch theme">&#9680;</button>
+      </header>
+
+      <section class="messages" id="messages">
+        <div class="welcome" id="welcome">
+          <div class="logo big">H</div>
+          <h1>Hello! I'm HETA AI.</h1>
+          <p>Your intelligent AI assistant. Ask me anything, and let's explore together.</p>
+          <div class="cards">
+            <button class="card" data-prompt="Explain Python programming to a beginner.">Explain Python Programming</button>
+            <button class="card" data-prompt="Write a professional email asking my manager for a day of leave.">Write a Professional Email</button>
+            <button class="card" data-prompt="Help me learn English. Start with a simple lesson on daily conversation.">Learn English</button>
+            <button class="card" data-prompt="Solve this step by step: 2x + 7 = 25">Solve Mathematics</button>
+            <button class="card" data-prompt="Generate HTML, CSS and JavaScript code for a simple to-do list.">Generate Code</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="composer">
+        <div class="input-wrap">
+          <textarea id="input" rows="1" placeholder="Message HETA AI (English or தமிழ்)..."></textarea>
+          <button id="sendBtn" aria-label="Send">&#10148;</button>
+        </div>
+        <div class="hint">Enter to send &middot; Shift+Enter for a new line</div>
+      </footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
