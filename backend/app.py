@@ -3,20 +3,29 @@ import os
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-import database as db
-from ai_engine import get_ai_response, AIError
+try:
+    from . import database as db
+    from .ai_engine import get_ai_response, AIError
+except ImportError:  # Running directly from the backend directory on Windows.
+    import database as db
+    from ai_engine import get_ai_response, AIError
 
-FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend")
+PUBLIC_DIR = os.path.join(os.path.dirname(__file__), "..", "public")
 
-# Flask also serves the frontend, so you can open http://127.0.0.1:5000
-app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
+# Vercel serves /public files from its CDN. This route serves them locally.
+app = Flask(__name__, static_folder=None)
 CORS(app)  # allows the page to call the API even if opened as a file
 db.init_db()
 
 
 @app.route("/")
 def home():
-    return send_from_directory(FRONTEND_DIR, "index.html")
+    return send_from_directory(PUBLIC_DIR, "index.html")
+
+
+@app.route("/<path:filename>")
+def local_public_file(filename):
+    return send_from_directory(PUBLIC_DIR, filename)
 
 
 def make_title(text):

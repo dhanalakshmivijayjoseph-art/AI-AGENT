@@ -2,7 +2,11 @@
 import os
 import sqlite3
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "heta.db")
+if os.getenv("VERCEL"):
+    # Vercel function files are read-only; /tmp is writable but ephemeral.
+    DB_PATH = os.path.join(os.getenv("TMPDIR", "/tmp"), "heta.db")
+else:
+    DB_PATH = os.path.join(os.path.dirname(__file__), "heta.db")
 
 
 def get_conn():
